@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #FFC0CB; /* Light pink background */
+            color: #D81B60; /* Dark pink text */
+        }
+        img {
+            width: 300px;
+            margin: 20px 10px;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+        }
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .yes-btn { background-color: #FF69B4; color: white; }
+        .no-btn { background-color: #FF1493; color: white; }
+        .hearts { font-size: 24px; margin-top: 10px; color: #FF1493; }
+    </style>
+</head>
+<body>
+
+    <h2 id="question">Will you be my Valentine? 💘</h2>
+    <img id="mainImage" src="https://i.ibb.co/gYgwxGW/willbe.jpg" alt="Valentine Image">
+
+    <br>
+    <button class="yes-btn" onclick="answerYes()">Yes 💖</button>
+    <button class="no-btn" onclick="answerNo()">No 💔</button>
+
+    <div id="response"></div>
+
+    <script>
+        let noCount = 0; // Track how many times "No" is clicked
+
+        function answerYes() {
+            document.getElementById("response").innerHTML = `
+                <h3>YEEYYYY! 🎉💖</h3>
+                <img src="https://i.ibb.co/Jw0JTzyS/yes.jpg" alt="Happy Image">
+                <div class="hearts">💖💖💖</div>
+            `;
+            document.getElementById("question").innerText = "";
+            document.getElementById("mainImage").style.display = "none";
+        }
+
+        function answerNo() {
+            noCount++;
+
+            let images = [
+                "https://i.ibb.co/Q35NGcpH/2.jpg", // No 1
+                "https://i.ibb.co/6JJH808T/1.jpg", // No 2
+                "https://i.ibb.co/4Z6g5GWt/3.jpg", // No 3
+                "https://i.ibb.co/CKDY6Rwj/4.jpg"  // No 4 (Final)
+            ];
+
+            let messages = [
+                "Are you sure? 😢",
+                "Really sure? 🥺",
+                "Think again! 💔",
+                "This is the last chance! 💞"
+            ];
+
+            if (noCount <= 4) {
+                document.getElementById("response").innerHTML = `
+                    <h3>${messages[noCount - 1]}</h3>
+                    <img src="${images[noCount - 1]}" alt="No Image ${noCount}">
+                    <br>
+                    <button class="yes-btn" onclick="answerYes()">Yes 💖</button>
+                    <button class="no-btn" onclick="answerNo()">No 💔</button>
+                `;
+            } else {
+                document.getElementById("response").innerHTML = `
+                    <h3>Okay... I understand. 😔</h3>
+                    <img src="https://i.ibb.co/tT8K9sMp/i-understand.jpg" alt="Final No Image">
+                `;
+            }
+        }
+    </script>
+
+</body>
+</html>
